@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.epicodus.serviceexample.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Service" >
+        </Button>
+
+        <Button
+            android:id="@+id/btnStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Stop Service" >
+        </Button>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RelativeLayout01">
+
+        <Button
+            android:id="@+id/btnBind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bind to Service" >
+        </Button>
+
+        <Button
+            android:id="@+id/btnUnbind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Unbind from Service" >
+        </Button>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Status Goes Here"
+        android:textSize="24sp"
+        android:layout_below="@+id/RelativeLayout02" />
+
+    <TextView
+        android:id="@+id/textIntValue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Integer Value Goes Here"
+        android:textSize="24sp"
+        android:layout_below="@+id/textStatus" />
+
+    <TextView
+        android:id="@+id/textStrValue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="String Value Goes Here"
+        android:textSize="24sp"
+        android:layout_below="@+id/textIntValue" />
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout03"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textStrValue">
+
+        <Button
+            android:id="@+id/btnUpby1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Increment by 1" >
+        </Button>
+
+        <Button
+            android:id="@+id/btnUpby10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Increment by 10" >
+        </Button>
+    </RelativeLayout>
+</RelativeLayout>
