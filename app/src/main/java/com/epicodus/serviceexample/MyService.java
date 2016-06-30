@@ -25,6 +25,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MyService extends Service implements SensorEventListener {
+    private static final String PREFERENCE_NAME = "MyPreferenceFileName";
+
     private NotificationManager nm;
     private Timer timer = new Timer();
     private int counter = 0, incrementBy = 1;
@@ -32,6 +34,7 @@ public class MyService extends Service implements SensorEventListener {
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+    private boolean pref_checked;
 
     ArrayList<Messenger> mClients = new ArrayList<Messenger>();
     int mValue = 0;
@@ -87,11 +90,11 @@ public class MyService extends Service implements SensorEventListener {
         for(int i = mClients.size()-1; i >= 0; i--) {
             try {
                 mClients.get(i).send(Message.obtain(null, MSG_SET_INT_VALUE, intValueToSend, 0));
-                Bundle b = new Bundle();
-                b.putString("str1", "ab" + intValueToSend + "cd");
-                Message msg = Message.obtain(null, MSG_SET_STR_VALUE);
-                msg.setData(b);
-                mClients.get(i).send(msg);
+//                Bundle b = new Bundle();
+//                b.putString("str1", "ab" + intValueToSend + "cd");
+//                Message msg = Message.obtain(null, MSG_SET_STR_VALUE);
+//                msg.setData(b);
+//                mClients.get(i).send(msg);
             } catch (RemoteException e) {
                 e.printStackTrace();
                 mClients.remove(i);
@@ -112,7 +115,7 @@ public class MyService extends Service implements SensorEventListener {
         }, 0, 100L);
         isRunning = true;
 
-        mSharedPreferences = getApplicationContext().getSharedPreferences("MyPref", 0);
+        mSharedPreferences = getApplicationContext().getSharedPreferences(PREFERENCE_NAME, 0);
         mEditor = mSharedPreferences.edit();
 
         mSensorManager = (SensorManager) getApplicationContext().getSystemService(Context.SENSOR_SERVICE);
@@ -217,17 +220,17 @@ public class MyService extends Service implements SensorEventListener {
                             checkSpeedDirection = false;
                             stepCount++;
                             Log.d("step taken", stepCount + "");
-                            mEditor.putInt("stepsTaken", stepCount);
-                            mEditor.putFloat("grossTotalSpeed", grossTotalSpeed);
-                            mEditor.putInt("speedCounted", speedCounted);
+                            mEditor.putInt("stepsTaken", stepCount).commit();
+                            mEditor.putFloat("grossTotalSpeed", grossTotalSpeed).commit();
+                            mEditor.putInt("speedCounted", speedCounted).commit();
                         }
                     } else {
                         if (localAverageSpeed < totalAverageSpeed) {
                             checkSpeedDirection = true;
                             stepCount++;
-                            mEditor.putInt("stepsTaken", stepCount);
-                            mEditor.putFloat("grossTotalSpeed", grossTotalSpeed);
-                            mEditor.putInt("speedCounted", speedCounted);
+                            mEditor.putInt("stepsTaken", stepCount).commit();
+                            mEditor.putFloat("grossTotalSpeed", grossTotalSpeed).commit();
+                            mEditor.putInt("speedCounted", speedCounted).commit();
                             Log.d("step taken", mSharedPreferences.getInt("stepsTaken", 0)+"");
 
                         }

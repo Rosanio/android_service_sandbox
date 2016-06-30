@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String PREFERENCE_NAME = "MyPreferenceFileName";
+
     Button btnStart, btnStop, btnBind, btnUnbind, btnUpBy1, btnUpBy10;
     TextView textStatus, textIntValue, textStrValue;
     Messenger mService = null;
